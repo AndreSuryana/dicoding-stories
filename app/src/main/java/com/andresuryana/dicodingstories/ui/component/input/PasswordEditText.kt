@@ -4,14 +4,14 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
 import com.andresuryana.dicodingstories.R
+import com.google.android.material.textfield.TextInputEditText
 
 private const val PASSWORD_MIN_LENGTH = 8
 
 class PasswordEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : AppCompatEditText(context, attrs, defStyleAttr), TextWatcher {
+) : TextInputEditText(context, attrs, defStyleAttr), TextWatcher {
 
     init {
         addTextChangedListener(this)
