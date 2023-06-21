@@ -14,12 +14,16 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/app_navigation"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_listStoryFragment"
             app:destination="@id/listStoryFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/app_navigation" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
