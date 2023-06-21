@@ -8,6 +8,7 @@ import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.ErrorInterceptor
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.HeaderInterceptor
 import com.google.gson.Gson
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -18,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+@Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
