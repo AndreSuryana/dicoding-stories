@@ -1,0 +1,99 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.andresuryana.dicodingstories'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.andresuryana.dicodingstories"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"${getProperty('BASE_URL')}\"")
+        }
+
+        debug {
+            buildConfigField("String", "BASE_URL", "\"${getProperty('BASE_URL')}\"")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    ext {
+        // Default Generated Dependencies
+        coreKtxVersion = "1.8.0"
+        appCompatVerstion = "1.6.1"
+        materialVersion = "1.9.0"
+        constraintLayoutVersion = "1.5.0"
+        jUnitVersion = "4.13.2"
+        testJUnitVersion = "1.1.5"
+        espressoVersion = "3.5.1"
+
+        // Network
+        retrofitVersion = "2.9.0"
+        loggingInterceptorVersion = "5.0.0-alpha.6"
+
+        // Pagination
+        pagingVersion = "3.1.1"
+
+        // Dagger Hilt
+        hiltVersion = "2.44"
+    }
+
+    // Default Generated Dependencies
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVerstion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    testImplementation "junit:junit:$jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$testJUnitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
+
+    // Pagination
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+}
+
+kapt {
+    correctErrorTypes true
+}

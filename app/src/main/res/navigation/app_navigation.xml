@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_splashFragment_to_listStoryFragment"
+            app:destination="@id/listStoryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.auth.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_loginFragment_to_listStoryFragment"
+            app:destination="@id/listStoryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.auth.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/listStoryFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.story.list.ListStoryFragment"
+        android:label="fragment_list_story"
+        tools:layout="@layout/fragment_list_story">
+        <action
+            android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
+            app:destination="@id/detailStoryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_listStoryFragment_to_addStoryFragment"
+            app:destination="@id/addStoryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailStoryFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.story.detail.DetailStoryFragment"
+        android:label="fragment_detail_story"
+        tools:layout="@layout/fragment_detail_story" />
+    <fragment
+        android:id="@+id/addStoryFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.story.add.AddStoryFragment"
+        android:label="fragment_add_story"
+        tools:layout="@layout/fragment_add_story" />
+</navigation>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Dicoding Stories</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_min_password_length">Password must be at least %d characters long</string>
+    <string name="error_invalid_email">Please provide a valid email address</string>
+    <string name="error_default">An error occurred</string>
+</resources>
