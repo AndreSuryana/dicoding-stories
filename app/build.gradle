@@ -49,14 +49,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     ext {
         // Default Generated Dependencies
-        coreKtxVersion = "1.8.0"
+        coreKtxVersion = "1.10.1"
         appCompatVerstion = "1.6.1"
         materialVersion = "1.9.0"
-        constraintLayoutVersion = "1.5.0"
+        constraintLayoutVersion = "2.1.4"
         jUnitVersion = "4.13.2"
         testJUnitVersion = "1.1.5"
         espressoVersion = "3.5.1"
@@ -81,6 +79,10 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$testJUnitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
+    // Navigation Component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+
     // Network
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -92,6 +94,12 @@ dependencies {
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    // Swipe Refresh Layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 }
 
 kapt {
