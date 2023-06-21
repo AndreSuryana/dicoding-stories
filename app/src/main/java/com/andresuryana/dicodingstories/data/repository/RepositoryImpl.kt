@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.andresuryana.dicodingstories.data.model.Story
+import com.andresuryana.dicodingstories.data.model.User
 import com.andresuryana.dicodingstories.data.pagination.StoryPagingSource
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.util.Constants.STORIES_PAGE_SIZE
@@ -36,12 +37,12 @@ class RepositoryImpl(private val remote: ApiService) : Repository {
         }
     }
 
-    override suspend fun login(email: String, password: String): Resource<Boolean> {
+    override suspend fun login(email: String, password: String): Resource<User> {
         return try {
             val response = remote.login(email, password)
             val result = response.body()
             if (response.isSuccessful && result != null) {
-                Resource.Success(true)
+                Resource.Success(result.data)
             } else {
                 Resource.Failed(parseErrorMessage(response.errorBody()))
             }

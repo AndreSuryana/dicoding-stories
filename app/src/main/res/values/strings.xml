@@ -1,7 +1,36 @@
 <resources>
+    <!-- App Name -->
     <string name="app_name">Dicoding Stories</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Title -->
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+
+
+    <!-- Hint -->
+    <string name="hint_user_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+
+    <!-- Helper -->
+
+
+    <!-- Message -->
+    <string name="success_login_user">Successfully logged on as %s</string>
+    <string name="success_register_user">Successfully registered as %s</string>
+
     <string name="error_min_password_length">Password must be at least %d characters long</string>
     <string name="error_invalid_email">Please provide a valid email address</string>
     <string name="error_default">An error occurred</string>
+
+    <!-- Button -->
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+
+    <!-- Questions -->
+    <string name="question_register">Don\'t have an account?</string>
+    <string name="question_login">Already have an account?</string>
+
 </resources>

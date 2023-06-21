@@ -1,4 +1,4 @@
-package com.andresuryana.dicodingstories.ui.fragment.auth.login
+package com.andresuryana.dicodingstories.ui.fragment.auth.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,19 +14,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class RegisterViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState<User>>()
     val uiState: LiveData<UiState<User>> = _uiState
 
-    fun login(email: String, password: String) {
+    fun register(name: String, email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _uiState.value = UiState.Loading
-            when (val result = repository.login(email, password)) {
+            when (val result = repository.register(name, email, password)) {
                 is Resource.Success -> {
-                    _uiState.value = UiState.Success(result.data)
+                    _uiState.value = UiState.Success(User(null, name, null))
                 }
 
                 is Resource.Error -> {
