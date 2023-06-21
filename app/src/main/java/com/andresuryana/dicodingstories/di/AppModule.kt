@@ -4,6 +4,8 @@ import android.content.Context
 import com.andresuryana.dicodingstories.BuildConfig
 import com.andresuryana.dicodingstories.data.repository.Repository
 import com.andresuryana.dicodingstories.data.repository.RepositoryImpl
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelperImpl
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.ErrorInterceptor
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.HeaderInterceptor
@@ -25,7 +27,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(remote: ApiService): Repository = RepositoryImpl(remote)
+    fun provideSessionHelper(@ApplicationContext context: Context): SessionHelper = SessionHelperImpl(context)
+
+    @Provides
+    @Singleton
+    fun provideRepository(remote: ApiService, session: SessionHelper): Repository = RepositoryImpl(remote, session)
 
     @Provides
     @Singleton

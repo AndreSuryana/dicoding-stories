@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.andresuryana.dicodingstories.data.model.Story
 import com.andresuryana.dicodingstories.data.model.User
 import com.andresuryana.dicodingstories.data.pagination.StoryPagingSource
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.util.Constants.STORIES_PAGE_SIZE
 import com.andresuryana.dicodingstories.util.Helper.parseErrorMessage
@@ -16,8 +17,12 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import javax.inject.Inject
 
-class RepositoryImpl(private val remote: ApiService) : Repository {
+class RepositoryImpl @Inject constructor(
+    private val remote: ApiService,
+    private val session: SessionHelper
+) : Repository {
 
     override suspend fun register(
         name: String,
@@ -42,6 +47,10 @@ class RepositoryImpl(private val remote: ApiService) : Repository {
             val response = remote.login(email, password)
             val result = response.body()
             if (response.isSuccessful && result != null) {
+                // Store user session
+                result.data.let { user ->
+                    session.setCurrentUser(user.id, user.name, user.email, user.token)
+                }
                 Resource.Success(result.data)
             } else {
                 Resource.Failed(parseErrorMessage(response.errorBody()))

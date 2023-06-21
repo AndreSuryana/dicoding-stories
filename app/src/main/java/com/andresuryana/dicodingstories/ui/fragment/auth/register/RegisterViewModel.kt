@@ -26,7 +26,7 @@ class RegisterViewModel @Inject constructor(
             _uiState.value = UiState.Loading
             when (val result = repository.register(name, email, password)) {
                 is Resource.Success -> {
-                    _uiState.value = UiState.Success(User(null, name, null))
+                    _uiState.value = UiState.Success(User("", name, email, ""))
                 }
 
                 is Resource.Error -> {
