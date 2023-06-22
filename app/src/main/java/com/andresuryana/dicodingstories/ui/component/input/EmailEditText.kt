@@ -14,6 +14,8 @@ class EmailEditText @JvmOverloads constructor(
 
     init {
         addTextChangedListener(this)
+        isFocusable = true
+        isFocusableInTouchMode = true
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
