@@ -16,6 +16,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -39,12 +40,16 @@ object AppModule {
         // Interceptors
         val headerInterceptor = HeaderInterceptor(context)
         val errorInterceptor = ErrorInterceptor()
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            this.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        }
 
         // Client
         val client = OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
             .addInterceptor(headerInterceptor)
             .addInterceptor(errorInterceptor)
+            .addInterceptor(loggingInterceptor)
             .build()
 
         // Converter Factory
