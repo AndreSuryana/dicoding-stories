@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:padding="@dimen/margin_normal"
+    android:padding="@dimen/margin_large"
     tools:context=".ui.fragment.auth.login.LoginFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
-        android:layout_marginBottom="@dimen/margin_normal"
         android:gravity="center"
         android:text="@string/title_login"
         android:textSize="24sp"
@@ -34,7 +33,8 @@
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:padding="@dimen/edit_text_padding" />
+            android:padding="@dimen/edit_text_padding"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,15 +43,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
-        app:hintEnabled="true">
+        app:hintEnabled="true"
+        app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.andresuryana.dicodingstories.ui.component.input.PasswordEditText
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:padding="@dimen/edit_text_padding" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_large"
         android:insetLeft="0dp"
         android:insetTop="0dp"
         android:insetRight="0dp"
@@ -73,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:orientation="horizontal">
 
         <TextView
