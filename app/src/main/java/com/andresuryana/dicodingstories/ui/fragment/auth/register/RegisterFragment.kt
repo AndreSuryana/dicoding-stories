@@ -50,7 +50,8 @@ class RegisterFragment : BaseFragment() {
         when (state) {
             is UiState.Success -> {
                 hideLoading()
-                showMessage(getString(R.string.success_login_user, state.data.name))
+                showMessage(getString(R.string.success_register_user, state.data.name))
+                getNavController().navigate(R.id.loginFragment)
             }
 
             is UiState.Loading -> {

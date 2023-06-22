@@ -23,18 +23,18 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _uiState.value = UiState.Loading
+            _uiState.postValue(UiState.Loading)
             when (val result = repository.login(email, password)) {
                 is Resource.Success -> {
-                    _uiState.value = UiState.Success(result.data)
+                    _uiState.postValue(UiState.Success(result.data))
                 }
 
                 is Resource.Error -> {
-                    _uiState.value = result.message?.let { UiState.Error(it) }
+                    _uiState.postValue(result.message?.let { UiState.Error(it) })
                 }
 
                 is Resource.Failed -> {
-                    _uiState.value = result.message.let { UiState.Error(it) }
+                    _uiState.postValue(result.message.let { UiState.Error(it) })
                 }
             }
         }
