@@ -26,6 +26,7 @@ class SessionHelperImpl(context: Context) : SessionHelper {
         prefs.edit()
             .putString(KEY_USER_ID, id)
             .putString(KEY_USER_NAME, name)
+            .putString(KEY_USER_EMAIL, email)
             .putString(KEY_USER_TOKEN, token)
             .apply()
     }
@@ -36,12 +37,8 @@ class SessionHelperImpl(context: Context) : SessionHelper {
         val email = prefs.getString(KEY_USER_EMAIL, null)
         val token = prefs.getString(KEY_USER_TOKEN, null)
 
-        return if (id != null && name != null && email != null && token != null) User(
-            id,
-            name,
-            email,
-            token
-        )
+        return if (id != null && name != null && email != null && token != null)
+            User(id, name, email, token)
         else null
     }
 
