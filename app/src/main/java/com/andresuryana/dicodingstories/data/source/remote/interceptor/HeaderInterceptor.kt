@@ -1,17 +1,17 @@
 package com.andresuryana.dicodingstories.data.source.remote.interceptor
 
 import android.content.Context
-import com.andresuryana.dicodingstories.BuildConfig
-import com.andresuryana.dicodingstories.util.session.SessionManager
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelperImpl
 import okhttp3.Interceptor
 import okhttp3.Response
 
 class HeaderInterceptor(context: Context) : Interceptor {
 
-    private var sessionManager: SessionManager
+    private var sessionManager: SessionHelper
 
     init {
-        sessionManager = SessionManager(context)
+        sessionManager = SessionHelperImpl(context)
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -21,8 +21,8 @@ class HeaderInterceptor(context: Context) : Interceptor {
         request.addHeader("Accept", "application/json")
 
         // Set authorization
-        sessionManager.getUserToken()?.let { token ->
-            request.addHeader("Authorization", "Bearer $token")
+        sessionManager.getCurrentUser()?.let { user ->
+            request.addHeader("Authorization", "Bearer ${user.token}")
         }
 
         return chain.proceed(request.build())
