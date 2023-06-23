@@ -3,6 +3,7 @@ package com.andresuryana.dicodingstories.ui.base
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -66,5 +67,26 @@ open class BaseFragment : Fragment() {
                 show()
             }
         }
+    }
+
+    fun showAlertDialog(
+        @StringRes title: Int,
+        @StringRes message: Int,
+        @StringRes positiveButtonText: Int = R.string.btn_default_positive,
+        @StringRes negativeButtonText: Int = R.string.btn_default_negative,
+        onPositiveButtonClickListener: () -> Unit,
+        isCancelable: Boolean = false
+    ) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(title)
+            .setMessage(message)
+            .setCancelable(isCancelable)
+            .setPositiveButton(positiveButtonText) { dialog, _ ->
+                onPositiveButtonClickListener()
+                dialog.dismiss()
+            }
+            .setNegativeButton(negativeButtonText) { dialog, _ ->
+                dialog.dismiss()
+            }
     }
 }
