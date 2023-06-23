@@ -1,8 +1,11 @@
 package com.andresuryana.dicodingstories.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 data class Story(
 
     @SerializedName("id")
@@ -26,4 +29,4 @@ data class Story(
     @SerializedName("lon")
     val longitude: Float?
 
-)
+) : Parcelable

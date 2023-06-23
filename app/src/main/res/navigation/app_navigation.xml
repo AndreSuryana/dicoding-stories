@@ -54,9 +54,9 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/listStoryFragment"
-        android:name="com.andresuryana.dicodingstories.ui.fragment.story.list.ListStoryFragment"
+        android:name="com.andresuryana.dicodingstories.ui.fragment.story.StoryFragment"
         android:label="fragment_list_story"
-        tools:layout="@layout/fragment_list_story">
+        tools:layout="@layout/fragment_story">
         <action
             android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
             app:destination="@id/detailStoryFragment"

@@ -20,17 +20,23 @@
     <!-- Message -->
     <string name="success_login_user">Successfully logged on as %s</string>
     <string name="success_register_user">Successfully registered as %s</string>
+    <string name="success_add_story">Your new story has been successfully added!</string>
 
     <string name="error_min_password_length">Password must be at least %d characters long</string>
     <string name="error_invalid_email">Please provide a valid email address</string>
     <string name="error_default">An error occurred</string>
+    <string name="error_add_story">Failed to upload your story, please try again</string>
 
     <!-- Button -->
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
+    <string name="btn_add_story">Add Story</string>
 
     <!-- Questions -->
     <string name="question_register">Don\'t have an account?</string>
     <string name="question_login">Already have an account?</string>
+
+    <!-- Content Description -->
+    <string name="desc_story_images">Story Images</string>
 
 </resources>
