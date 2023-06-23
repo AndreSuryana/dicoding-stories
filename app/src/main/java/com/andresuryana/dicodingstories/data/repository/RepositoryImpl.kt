@@ -49,7 +49,7 @@ class RepositoryImpl @Inject constructor(
             if (response.isSuccessful && result != null) {
                 // Store user session
                 result.data.let { user ->
-                    session.setCurrentUser(user.id, user.name, user.email, user.token)
+                    session.setCurrentUser(user.id, user.name, email, user.token)
                 }
                 Resource.Success(result.data)
             } else {
