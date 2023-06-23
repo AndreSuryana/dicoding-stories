@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.andresuryana.dicodingstories.data.model.Story
 import com.andresuryana.dicodingstories.databinding.ItemStoryBinding
+import com.andresuryana.dicodingstories.util.Ext.formatToRelativeTime
 import com.bumptech.glide.Glide
 
 class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -39,6 +40,9 @@ class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALL
 
             // Name
             binding.tvItemName.text = story.name
+
+            // Date
+            binding.tvItemDate.text = story.createdAt.formatToRelativeTime()
 
             // Description
             binding.tvItemDescription.text = story.description

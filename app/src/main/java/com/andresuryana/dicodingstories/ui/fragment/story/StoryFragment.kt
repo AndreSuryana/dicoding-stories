@@ -68,9 +68,9 @@ class StoryFragment : BaseFragment() {
         }
 
         // Setup refresh layout
-        binding.root.setOnRefreshListener {
+        binding.refreshLayout.setOnRefreshListener {
             viewModel.refreshStories()
-            binding.root.isRefreshing = false
+            binding.refreshLayout.isRefreshing = false
         }
 
         // Setup button
