@@ -18,8 +18,8 @@
             app:popUpTo="@id/app_navigation"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_listStoryFragment"
-            app:destination="@id/listStoryFragment"
+            android:id="@+id/action_splashFragment_to_storyFragment"
+            app:destination="@id/storyFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:launchSingleTop="true"
@@ -36,8 +36,8 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_loginFragment_to_listStoryFragment"
-            app:destination="@id/listStoryFragment"
+            android:id="@+id/action_loginFragment_to_storyFragment"
+            app:destination="@id/storyFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
@@ -53,17 +53,17 @@
         app:exitAnim="@android:anim/fade_out"
         app:launchSingleTop="true" />
     <fragment
-        android:id="@+id/listStoryFragment"
+        android:id="@+id/storyFragment"
         android:name="com.andresuryana.dicodingstories.ui.fragment.story.StoryFragment"
-        android:label="fragment_list_story"
+        android:label="fragment_story"
         tools:layout="@layout/fragment_story">
         <action
-            android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
+            android:id="@+id/action_storyFragment_to_detailStoryFragment"
             app:destination="@id/detailStoryFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_listStoryFragment_to_addStoryFragment"
+            android:id="@+id/action_storyFragment_to_addStoryFragment"
             app:destination="@id/addStoryFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />

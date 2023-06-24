@@ -101,7 +101,12 @@ class StoryFragment : BaseFragment() {
         binding.fabAddStory.setOnClickListener {
             showAddStoryDialog()
         }
-    }
+
+        // Button logout
+        binding.actionSetting.setOnClickListener {
+            // Navigate to setting fragment
+            getNavController().navigate(R.id.action_storyFragment_to_settingFragment)
+        }
 
     private fun showAddStoryDialog() {
         // TODO: Create add story dialog and show it here!

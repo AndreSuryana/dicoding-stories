@@ -51,7 +51,7 @@ class LoginFragment : BaseFragment() {
             is UiState.Success -> {
                 hideLoading()
                 showMessage(getString(R.string.success_login_user, state.data.name))
-                getNavController().navigate(R.id.action_loginFragment_to_listStoryFragment)
+                getNavController().navigate(R.id.action_loginFragment_to_storyFragment)
             }
 
             is UiState.Loading -> {
