@@ -88,5 +88,6 @@ open class BaseFragment : Fragment() {
             .setNegativeButton(negativeButtonText) { dialog, _ ->
                 dialog.dismiss()
             }
+            .show()
     }
 }
