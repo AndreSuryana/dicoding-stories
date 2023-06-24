@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Language -->
+    <PreferenceCategory android:title="@string/settings_language">
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/languages"
+            android:entryValues="@array/language_values"
+            android:key="@string/settings_key_language_preference"
+            android:summary="%s"
+            android:title="@string/settings_language_preference" />
+    </PreferenceCategory>
+
+    <!-- Dark Mode -->
+    <PreferenceCategory android:title="@string/settings_display">
+        <SwitchPreferenceCompat
+            android:key="@string/settings_key_dark_mode_preference"
+            android:summaryOff="@string/settings_disabled"
+            android:summaryOn="@string/settings_enabled"
+            android:title="@string/settings_dark_mode_preference" />
+    </PreferenceCategory>
+
+    <!-- About -->
+    <PreferenceCategory android:title="@string/settings_about">
+        <Preference
+            android:key="@string/settings_key_about_preference"
+            android:selectable="false"
+            android:summary="@string/settings_about_description"
+            android:title="@string/settings_about_preference" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

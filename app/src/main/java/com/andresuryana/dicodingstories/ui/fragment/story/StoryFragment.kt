@@ -108,7 +108,20 @@ class StoryFragment : BaseFragment() {
             getNavController().navigate(R.id.action_storyFragment_to_settingFragment)
         }
 
-    private fun showAddStoryDialog() {
-        // TODO: Create add story dialog and show it here!
+        // Button setting
+        binding.actionLogout.setOnClickListener {
+            // Show alert dialog for logout
+            showAlertDialog(
+                title = R.string.dialog_title_logout,
+                message = R.string.dialog_message_logout,
+                positiveButtonText = R.string.btn_logout,
+                onPositiveButtonClickListener = {
+                    // Clear session and navigate to loginFragment
+                    val session = SessionHelperImpl(requireContext())
+                    session.clearSession()
+                    getNavController().navigate(R.id.action_global_loginFragment)
+                }
+            )
+        }
     }
 }

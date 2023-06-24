@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Title -->
+    <string name="settings_language">Language Settings</string>
+    <string name="settings_language_preference">Language</string>
+    <string name="settings_key_language_preference">language_preference</string>
+    <string name="settings_display">Display Settings</string>
+    <string name="settings_dark_mode_preference">Dark Mode</string>
+    <string name="settings_key_dark_mode_preference">dark_mode_preference</string>
+    <string name="settings_about">About</string>
+    <string name="settings_about_preference">About</string>
+    <string name="settings_key_about_preference">about_preference</string>
+    <string name="settings_enabled">Enabled</string>
+    <string name="settings_disabled">Disabled</string>
+    <string name="settings_about_description">Dicoding Stories\nCreated by Andre Suryana with &#x2764;\n2023</string>
+
+    <!-- Languages Array -->
+    <string-array name="languages">
+        <item>English</item>
+        <item>Indonesian</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>en</item>
+        <item>id</item>
+    </string-array>
+
+</resources>

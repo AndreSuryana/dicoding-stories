@@ -6,7 +6,9 @@
     <!-- Title -->
     <string name="title_login">Login</string>
     <string name="title_register">Register</string>
-
+    <string name="title_setting">Setting</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_add_story">Add Story</string>
 
     <!-- Hint -->
     <string name="hint_user_name">Name</string>
@@ -27,10 +29,16 @@
     <string name="error_default">An error occurred</string>
     <string name="error_add_story">Failed to upload your story, please try again</string>
 
+    <string name="dialog_title_logout">Logout Confirmation</string>
+    <string name="dialog_message_logout">Are you sure to logout from this account?</string>
+
     <!-- Button -->
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
     <string name="btn_add_story">Add Story</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_default_negative">No</string>
+    <string name="btn_default_positive">Yes</string>
 
     <!-- Questions -->
     <string name="question_register">Don\'t have an account?</string>
@@ -38,5 +46,7 @@
 
     <!-- Content Description -->
     <string name="desc_story_images">Story Images</string>
+    <string name="desc_btn_logout">Logout Button</string>
+    <string name="desc_btn_setting">Settings Button</string>
 
 </resources>
