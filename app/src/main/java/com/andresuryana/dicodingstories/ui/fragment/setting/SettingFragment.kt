@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.PreferenceFragmentCompat
 import com.andresuryana.dicodingstories.R
+import com.andresuryana.dicodingstories.util.SettingHelper
 
 class SettingFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
 
@@ -25,14 +26,25 @@ class SettingFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeList
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        val settingHelper = SettingHelper(requireContext())
         Toast.makeText(requireContext(), "$key=${sharedPreferences?.getString(key, null)}", Toast.LENGTH_SHORT).show()
         when (key) {
-            // TODO: Action according to the key!
+            getString(R.string.settings_key_language_preference) -> {
+                // Language
+                val language = sharedPreferences?.getString(key, "en") ?: "en"
+                settingHelper.setLanguage(language)
+
+                // Update ui
+                requireActivity().recreate()
+            }
+            getString(R.string.settings_key_dark_mode_preference) -> {
+                // Dark Mode
+                val isDarkMode = sharedPreferences?.getBoolean(key, false) ?: false
+                settingHelper.setDarkMode(isDarkMode)
+
+                // TODO: Update dark mode here!
+            }
             else -> Unit
         }
-    }
-
-    private fun updatePreference(key: String) {
-        // TODO: Update value
     }
 }
