@@ -57,6 +57,6 @@
     <string name="desc_btn_logout">Logout Button</string>
     <string name="desc_btn_setting">Settings Button</string>
     <string name="desc_btn_back">Back Button</string>
-    <string name="desc_btn_publish">Publish Button</string>
+    <string name="desc_btn_add">Button Add</string>
 
 </resources>

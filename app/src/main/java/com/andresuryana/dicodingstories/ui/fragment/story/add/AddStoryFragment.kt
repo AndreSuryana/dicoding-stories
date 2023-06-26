@@ -108,10 +108,10 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
 
     private fun setupButton() {
         // Button back
-        binding.actionBack.setOnClickListener { getNavController().popBackStack() }
+        binding.buttonBack.setOnClickListener { getNavController().popBackStack() }
 
-        // Button publish
-        binding.actionPublish.setOnClickListener {
+        // Button add
+        binding.buttonAdd.setOnClickListener {
             validate { image, description ->
                 viewModel.addStory(image, description)
             }

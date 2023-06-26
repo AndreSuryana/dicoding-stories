@@ -23,7 +23,7 @@
             app:titleTextColor="@color/white">
 
             <ImageButton
-                android:id="@+id/action_back"
+                android:id="@+id/button_back"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="start"
@@ -44,13 +44,13 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/action_publish"
+                android:id="@+id/button_add"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/desc_btn_publish"
+                android:contentDescription="@string/desc_btn_add"
                 android:src="@drawable/ic_round_check"
                 app:tint="@color/white"
                 tools:ignore="RedundantDescriptionCheck" />
