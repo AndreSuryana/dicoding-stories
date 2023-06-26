@@ -1,7 +1,9 @@
 package com.andresuryana.dicodingstories.util
 
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 object Ext {
 
@@ -31,5 +33,10 @@ object Ext {
             diffInMillis < yearInMillis -> "${diffInSeconds / monthInMillis} months ago"
             else -> "${diffInSeconds / yearInMillis} years ago"
         }
+    }
+
+    fun Date.formatDate(pattern: String): String {
+        val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+        return sdf.format(this)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -49,6 +50,10 @@ class StoryFragment : BaseFragment() {
 
         // Setup adapter
         storyAdapter = StoryAdapter()
+        storyAdapter.setOnItemClickListener { story ->
+            val bundle = bundleOf(getString(R.string.key_story) to story)
+            getNavController().navigate(R.id.action_storyFragment_to_detailStoryFragment, bundle)
+        }
         binding.rvStories.apply {
             layoutManager = LinearLayoutManager(context, VERTICAL, false)
             adapter = storyAdapter

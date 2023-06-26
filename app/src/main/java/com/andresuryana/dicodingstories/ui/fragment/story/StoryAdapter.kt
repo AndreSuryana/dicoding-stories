@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 
 class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
 
+    private var onItemClickListener: ((story: Story) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val story = getItem(position)
         if (story != null) holder.onBind(story)
@@ -22,6 +24,10 @@ class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALL
         return ViewHolder(
             ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
+    }
+
+    fun setOnItemClickListener(onItemClickListener: (story: Story) -> Unit) {
+        this.onItemClickListener = onItemClickListener
     }
 
     inner class ViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -46,6 +52,11 @@ class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALL
 
             // Description
             binding.tvItemDescription.text = story.description
+
+            // Click listener
+            itemView.setOnClickListener {
+                onItemClickListener?.invoke(story)
+            }
         }
     }
 

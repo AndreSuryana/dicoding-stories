@@ -24,8 +24,8 @@ class ErrorInterceptor : Interceptor {
                     message = "Network Connect Timeout Error"
                 }
                 else -> {
-                    code = -1
-                    message = "Unknown Error"
+                    code = 0
+                    message = e.message ?: "Unknown Error"
                 }
             }
             Response.Builder()
