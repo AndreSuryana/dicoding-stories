@@ -49,7 +49,7 @@ class SplashFragment : BaseFragment() {
 
     private fun checkUserSession() {
         if (session.isLoggedIn()) {
-            getNavController().navigate(R.id.action_splashFragment_to_listStoryFragment)
+            getNavController().navigate(R.id.action_splashFragment_to_storyFragment)
         } else {
             getNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }

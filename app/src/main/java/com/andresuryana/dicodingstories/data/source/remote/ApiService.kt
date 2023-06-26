@@ -42,7 +42,7 @@ interface ApiService {
     @Multipart
     @POST("stories")
     suspend fun addNewStory(
-        @Part("photo") photo: MultipartBody.Part,
+        @Part photo: MultipartBody.Part,
         @Part("description") description: RequestBody
     ): Response<Wrapper<Nothing>>
 }

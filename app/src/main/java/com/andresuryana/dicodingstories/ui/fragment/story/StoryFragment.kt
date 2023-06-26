@@ -11,9 +11,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.andresuryana.dicodingstories.R
+import com.andresuryana.dicodingstories.data.source.prefs.SessionHelperImpl
 import com.andresuryana.dicodingstories.databinding.FragmentStoryBinding
 import com.andresuryana.dicodingstories.ui.base.BaseFragment
-import com.andresuryana.dicodingstories.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,9 +61,6 @@ class StoryFragment : BaseFragment() {
                     // Collect stories again if refresh trigger is updated
                     viewModel.loadStories().collectLatest { storyAdapter.submitData(it) }
                 }
-
-                // Collect response add story
-                viewModel.addStoryState.collectLatest { addStoryStateObserver(it) }
             }
         }
 
@@ -77,29 +74,18 @@ class StoryFragment : BaseFragment() {
         setupButton()
     }
 
-    private fun addStoryStateObserver(state: UiState<Boolean>) {
-        when (state) {
-            is UiState.Success -> {
-                hideLoading()
-                if (state.data) showMessage(R.string.success_add_story)
-                else showErrorMessage(R.string.error_add_story)
-            }
+    override fun onDestroy() {
+        super.onDestroy()
 
-            is UiState.Error -> {
-                hideLoading()
-                showErrorMessage(state.message)
-            }
-
-            is UiState.Loading -> {
-                showLoading()
-            }
-        }
+        // Clear layout binding
+        _binding = null
     }
 
     private fun setupButton() {
         // Button add story
         binding.fabAddStory.setOnClickListener {
-            showAddStoryDialog()
+            // Navigate to add story fragment
+            getNavController().navigate(R.id.action_storyFragment_to_addStoryFragment)
         }
 
         // Button logout

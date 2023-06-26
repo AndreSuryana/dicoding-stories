@@ -1,5 +1,6 @@
 package com.andresuryana.dicodingstories.data.repository
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -56,6 +57,7 @@ class RepositoryImpl @Inject constructor(
                 Resource.Failed(parseErrorMessage(response.errorBody()))
             }
         } catch (e: Exception) {
+            Log.e(this::class.java.simpleName, e.message, e)
             Resource.Error(e.message)
         }
     }
