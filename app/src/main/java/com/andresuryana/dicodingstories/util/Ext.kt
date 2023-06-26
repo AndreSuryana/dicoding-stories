@@ -1,5 +1,7 @@
 package com.andresuryana.dicodingstories.util
 
+import android.content.Context
+import com.andresuryana.dicodingstories.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -12,7 +14,7 @@ object Ext {
         return this.matches(emailRegex)
     }
 
-    fun Date.formatToRelativeTime(): String {
+    fun Date.formatToRelativeTime(context: Context): String {
         val now = Calendar.getInstance().time
         val diffInMillis = now.time - this.time
         val diffInSeconds = diffInMillis / 1000
@@ -25,13 +27,13 @@ object Ext {
         val yearInMillis = 365 * dayInMillis
 
         return when {
-            diffInSeconds < minuteInMillis -> "Just now"
-            diffInSeconds < hourInMillis -> "${diffInSeconds / minuteInMillis} minutes ago"
-            diffInSeconds < dayInMillis -> "${diffInSeconds / hourInMillis} hours ago"
-            diffInMillis < weekInMillis -> "${diffInSeconds / dayInMillis} days ago"
-            diffInMillis < monthInMillis -> "${diffInSeconds / weekInMillis} weeks ago"
-            diffInMillis < yearInMillis -> "${diffInSeconds / monthInMillis} months ago"
-            else -> "${diffInSeconds / yearInMillis} years ago"
+            diffInSeconds < minuteInMillis -> context.getString(R.string.text_relative_date_now)
+            diffInSeconds < hourInMillis -> "${diffInSeconds / minuteInMillis} ${context.getString(R.string.text_relative_date_minutes)}"
+            diffInSeconds < dayInMillis -> "${diffInSeconds / hourInMillis} ${context.getString(R.string.text_relative_date_hours)}"
+            diffInMillis < weekInMillis -> "${diffInSeconds / dayInMillis} ${context.getString(R.string.text_relative_date_days)}"
+            diffInMillis < monthInMillis -> "${diffInSeconds / weekInMillis} ${context.getString(R.string.text_relative_date_weeks)}"
+            diffInMillis < yearInMillis -> "${diffInSeconds / monthInMillis} ${context.getString(R.string.text_relative_date_months)}"
+            else -> "${diffInSeconds / yearInMillis} ${context.getString(R.string.text_relative_date_years)}"
         }
     }
 

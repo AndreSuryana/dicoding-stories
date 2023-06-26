@@ -48,7 +48,7 @@ class StoryAdapter : PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALL
             binding.tvItemName.text = story.name
 
             // Date
-            binding.tvItemDate.text = story.createdAt.formatToRelativeTime()
+            binding.tvItemDate.text = story.createdAt.formatToRelativeTime(itemView.context)
 
             // Description
             binding.tvItemDescription.text = story.description

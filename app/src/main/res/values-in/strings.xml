@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Title -->
+    <string name="title_login">Masuk</string>
+    <string name="title_register">Daftar</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_logout">Keluar</string>
+    <string name="title_add_story">Tambah Cerita</string>
+    <string name="title_select_image">Pilih Gambar</string>
+    <string name="title_camera">Kamera</string>
+    <string name="title_gallery">Galeri</string>
+    <string name="title_storage">Penyimpanan</string>
+    <string name="title_intent_chooser_image">Pilih Gambar</string>
+    <string name="title_story_detail">Detail Cerita</string>
+
+    <!-- Hint -->
+    <string name="hint_user_name">Nama</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Kata Sandi</string>
+    <string name="hint_story_image">Unggah gambar Anda disini!</string>
+    <string name="hint_story_description">Deskripsi</string>
+
+    <!-- Message -->
+    <string name="success_login_user">Berhasil masuk sebagai %s</string>
+    <string name="success_register_user">Berhasil terdaftar sebagai %s</string>
+    <string name="success_add_story">Cerita baru Anda telah berhasil ditambahkan!</string>
+
+    <string name="error_min_password_length">Panjang kata sandi minimal harus %d karakter</string>
+    <string name="error_invalid_email">Berikan alamat email yang valid</string>
+    <string name="error_default">Terjadi kesalahan</string>
+    <string name="error_add_story">Gagal mengunggah cerita Anda, silakan coba lagi</string>
+    <string name="error_permission_denied">Izin %s telah ditolak, harap aktifkan di Pengaturan</string>
+
+    <string name="dialog_title_logout">Konfirmasi Keluar</string>
+    <string name="dialog_message_logout">Apakah Anda yakin untuk keluar dari akun ini?</string>
+
+    <!-- Button -->
+    <string name="btn_login">Masuk</string>
+    <string name="btn_register">Daftar</string>
+    <string name="btn_add_story">Tambah Cerita</string>
+    <string name="btn_logout">Keluar</string>
+    <string name="btn_default_negative">Tidak</string>
+    <string name="btn_default_positive">Iya</string>
+    <string name="btn_cancel">Batal</string>
+
+    <!-- Questions -->
+    <string name="question_register">Tidak memiliki akun?</string>
+    <string name="question_login">Sudah memiliki akun?</string>
+
+    <!-- Content Description -->
+    <string name="desc_story_images">Gambar Cerita</string>
+    <string name="desc_btn_logout">Tombol Keluar</string>
+    <string name="desc_btn_setting">Tombol Pengaturan</string>
+    <string name="desc_btn_back">Tombol Kembali</string>
+    <string name="desc_btn_add">Tombol Tambah</string>
+
+    <!-- Text -->
+    <string name="text_posted_on">Dibuat pada </string>
+    <string name="text_posted_by">oleh</string>
+    <string name="text_relative_date_now">Baru saja</string>
+    <string name="text_relative_date_minutes">menit yang lalu</string>
+    <string name="text_relative_date_hours">jam yang lalu</string>
+    <string name="text_relative_date_days">hari yang lalu</string>
+    <string name="text_relative_date_weeks">minggu yang lalu</string>
+    <string name="text_relative_date_months">bulan yang lalu</string>
+    <string name="text_relative_date_years">tahun yang lalu</string>
+
+</resources>

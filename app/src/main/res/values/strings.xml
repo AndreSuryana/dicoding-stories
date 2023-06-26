@@ -1,9 +1,9 @@
 <resources>
     <!-- App Name -->
-    <string name="app_name">Dicoding Stories</string>
+    <string name="app_name" translatable="false">Dicoding Stories</string>
 
     <!-- Key -->
-    <string name="key_story">story</string>
+    <string name="key_story" translatable="false">story</string>
 
     <!-- Title -->
     <string name="title_login">Login</string>
@@ -62,5 +62,12 @@
     <!-- Text -->
     <string name="text_posted_on">Posted on</string>
     <string name="text_posted_by">by</string>
+    <string name="text_relative_date_now">Just now</string>
+    <string name="text_relative_date_minutes">minutes ago</string>
+    <string name="text_relative_date_hours">hours ago</string>
+    <string name="text_relative_date_days">days ago</string>
+    <string name="text_relative_date_weeks">weeks ago</string>
+    <string name="text_relative_date_months">months ago</string>
+    <string name="text_relative_date_years">years ago</string>
 
 </resources>
