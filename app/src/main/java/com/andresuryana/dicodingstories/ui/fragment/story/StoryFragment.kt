@@ -94,12 +94,6 @@ class StoryFragment : BaseFragment() {
         }
 
         // Button logout
-        binding.actionSetting.setOnClickListener {
-            // Navigate to setting fragment
-            getNavController().navigate(R.id.action_storyFragment_to_settingFragment)
-        }
-
-        // Button setting
         binding.actionLogout.setOnClickListener {
             // Show alert dialog for logout
             showAlertDialog(

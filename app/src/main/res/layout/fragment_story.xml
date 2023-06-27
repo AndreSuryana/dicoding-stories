@@ -33,21 +33,11 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/action_setting"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/desc_btn_setting"
-                android:src="@drawable/ic_round_settings"
-                app:tint="@color/white"
-                tools:ignore="RedundantDescriptionCheck" />
-
-            <ImageButton
                 android:id="@+id/action_logout"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_normal"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/desc_btn_logout"
                 android:src="@drawable/ic_round_logout"

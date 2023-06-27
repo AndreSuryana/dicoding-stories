@@ -8,7 +8,6 @@
     <!-- Title -->
     <string name="title_login">Login</string>
     <string name="title_register">Register</string>
-    <string name="title_setting">Setting</string>
     <string name="title_logout">Logout</string>
     <string name="title_add_story">Add Story</string>
     <string name="title_select_image">Select Image</string>
@@ -55,7 +54,6 @@
     <!-- Content Description -->
     <string name="desc_story_images">Story Images</string>
     <string name="desc_btn_logout">Logout Button</string>
-    <string name="desc_btn_setting">Settings Button</string>
     <string name="desc_btn_back">Back Button</string>
     <string name="desc_btn_add">Button Add</string>
 

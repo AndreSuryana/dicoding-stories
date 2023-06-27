@@ -4,7 +4,6 @@
     <!-- Title -->
     <string name="title_login">Masuk</string>
     <string name="title_register">Daftar</string>
-    <string name="title_setting">Pengaturan</string>
     <string name="title_logout">Keluar</string>
     <string name="title_add_story">Tambah Cerita</string>
     <string name="title_select_image">Pilih Gambar</string>
@@ -51,7 +50,6 @@
     <!-- Content Description -->
     <string name="desc_story_images">Gambar Cerita</string>
     <string name="desc_btn_logout">Tombol Keluar</string>
-    <string name="desc_btn_setting">Tombol Pengaturan</string>
     <string name="desc_btn_back">Tombol Kembali</string>
     <string name="desc_btn_add">Tombol Tambah</string>
 
