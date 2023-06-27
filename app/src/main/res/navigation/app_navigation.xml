@@ -72,11 +72,6 @@
             app:destination="@id/addStoryFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_storyFragment_to_settingFragment"
-            app:destination="@id/settingFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/detailStoryFragment"
@@ -88,9 +83,4 @@
         android:name="com.andresuryana.dicodingstories.ui.fragment.story.add.AddStoryFragment"
         android:label="fragment_add_story"
         tools:layout="@layout/fragment_add_story" />
-    <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.andresuryana.dicodingstories.ui.fragment.setting.SettingFragment"
-        android:label="fragment_setting" />
-
 </navigation>
