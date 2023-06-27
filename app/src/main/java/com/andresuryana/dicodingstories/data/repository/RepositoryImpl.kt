@@ -13,6 +13,7 @@ import com.andresuryana.dicodingstories.util.Constants.STORIES_PAGE_SIZE
 import com.andresuryana.dicodingstories.util.Helper.parseErrorMessage
 import com.andresuryana.dicodingstories.util.Resource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -63,11 +64,16 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStories(): Flow<PagingData<Story>> {
-        return Pager(
-            config = PagingConfig(pageSize = STORIES_PAGE_SIZE)
-        ) {
-            StoryPagingSource(remote)
-        }.flow
+        return try {
+            Pager(
+                config = PagingConfig(pageSize = STORIES_PAGE_SIZE)
+            ) {
+                StoryPagingSource(remote)
+            }.flow
+        } catch (e: Exception) {
+            Log.e(this::class.java.simpleName, e.message, e)
+            flowOf(PagingData.empty())
+        }
     }
 
     override suspend fun addNewStory(photo: File, description: String): Resource<Boolean> {
