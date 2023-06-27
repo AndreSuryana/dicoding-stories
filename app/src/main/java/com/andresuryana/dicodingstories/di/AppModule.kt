@@ -9,6 +9,7 @@ import com.andresuryana.dicodingstories.data.source.prefs.SessionHelperImpl
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.ErrorInterceptor
 import com.andresuryana.dicodingstories.data.source.remote.interceptor.HeaderInterceptor
+import com.andresuryana.dicodingstories.data.source.remote.interceptor.NetworkConnectivityInterceptor
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,7 @@ object AppModule {
     @Singleton
     fun provideApiService(@ApplicationContext context: Context): ApiService {
         // Interceptors
+        val connectivityInterceptor = NetworkConnectivityInterceptor(context)
         val headerInterceptor = HeaderInterceptor(context)
         val errorInterceptor = ErrorInterceptor()
         val loggingInterceptor = HttpLoggingInterceptor().apply {
@@ -47,6 +49,7 @@ object AppModule {
         // Client
         val client = OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
+            .addInterceptor(connectivityInterceptor)
             .addInterceptor(headerInterceptor)
             .addInterceptor(errorInterceptor)
             .addInterceptor(loggingInterceptor)
