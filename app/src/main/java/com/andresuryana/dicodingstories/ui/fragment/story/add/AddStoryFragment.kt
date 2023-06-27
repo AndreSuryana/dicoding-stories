@@ -124,12 +124,12 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
 
         // Validate
         if (storyImage == null) {
-            showErrorMessage(R.string.hint_story_image)
+            showErrorMessage(R.string.error_story_image)
             return
         }
 
         if (description.isEmpty()) {
-            showErrorMessage(R.string.hint_story_description)
+            showErrorMessage(R.string.error_story_description)
             binding.edAddDescription.requestFocus()
             return
         }

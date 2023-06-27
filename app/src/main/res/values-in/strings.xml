@@ -17,7 +17,6 @@
     <string name="hint_user_name">Nama</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Kata Sandi</string>
-    <string name="hint_story_image">Unggah gambar Anda disini!</string>
     <string name="hint_story_description">Deskripsi</string>
 
     <!-- Message -->
@@ -30,6 +29,8 @@
     <string name="error_default">Terjadi kesalahan</string>
     <string name="error_add_story">Gagal mengunggah cerita Anda, silakan coba lagi</string>
     <string name="error_permission_denied">Izin %s telah ditolak, harap aktifkan di Pengaturan</string>
+    <string name="error_story_image">Unggah gambar Anda terlebih dahulu!</string>
+    <string name="error_story_description">Deskripsi tidak boleh kosong</string>
 
     <string name="dialog_title_logout">Konfirmasi Keluar</string>
     <string name="dialog_message_logout">Apakah Anda yakin untuk keluar dari akun ini?</string>
