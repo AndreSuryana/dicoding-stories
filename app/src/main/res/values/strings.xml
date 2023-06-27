@@ -21,6 +21,7 @@
     <string name="hint_user_name">Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+    <string name="hint_story_image">Upload your image here!</string>
     <string name="hint_story_description">Description</string>
 
     <!-- Message -->
@@ -35,6 +36,7 @@
     <string name="error_permission_denied">%s permission has been denied, please enable in the Settings</string>
     <string name="error_story_image">Upload your image first!</string>
     <string name="error_story_description">Description must not be empty</string>
+    <string name="error_stories_empty">The story list is currently empty</string>
 
     <string name="dialog_title_logout">Logout Confirmation</string>
     <string name="dialog_message_logout">Are you sure to logout from this account?</string>
