@@ -10,20 +10,25 @@
     tools:context=".ui.fragment.auth.register.RegisterFragment">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_normal"
+        android:alpha="0"
         android:gravity="center"
         android:text="@string/title_register"
         android:textSize="24sp"
         android:textStyle="bold"
+        tools:alpha="1"
         tools:viewBindingIgnore="true" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintEnabled="true">
+        android:alpha="0"
+        app:hintEnabled="true"
+        tools:alpha="1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_register_name"
@@ -40,7 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
-        app:hintEnabled="true">
+        android:alpha="0"
+        app:hintEnabled="true"
+        tools:alpha="1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_register_email"
@@ -57,8 +64,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
+        android:alpha="0"
         app:hintEnabled="true"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        tools:alpha="1">
 
         <com.andresuryana.dicodingstories.ui.component.input.PasswordEditText
             android:id="@+id/ed_register_password"
@@ -77,20 +86,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_large"
+        android:alpha="0"
         android:insetLeft="0dp"
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
         android:text="@string/btn_register"
         android:textSize="16sp"
+        tools:alpha="1"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <LinearLayout
+        android:id="@+id/login_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_small"
-        android:orientation="horizontal">
+        android:alpha="0"
+        android:orientation="horizontal"
+        tools:alpha="1">
 
         <TextView
             android:layout_width="wrap_content"

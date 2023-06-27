@@ -1,5 +1,6 @@
 package com.andresuryana.dicodingstories.ui.fragment.auth.login
 
+import android.animation.AnimatorSet
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.andresuryana.dicodingstories.R
 import com.andresuryana.dicodingstories.data.model.User
 import com.andresuryana.dicodingstories.databinding.FragmentLoginBinding
 import com.andresuryana.dicodingstories.ui.base.BaseFragment
+import com.andresuryana.dicodingstories.util.AnimationHelper.slideUpWithFadeIn
 import com.andresuryana.dicodingstories.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,11 +41,29 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Animation
+        animateLayout()
+
         // Add observer
         viewModel.uiState.observe(viewLifecycleOwner, this::uiStateObserver)
 
         // Setup button
         setupButton()
+    }
+
+    private fun animateLayout() {
+        // Define animation
+        val title = slideUpWithFadeIn(binding.title, 1000L)
+        val tilEmail = slideUpWithFadeIn(binding.tilEmail, 500L)
+        val tilPassword = slideUpWithFadeIn(binding.tilPassword, 500L)
+        val btnLogin = slideUpWithFadeIn(binding.btnLogin, 500L)
+        val registerContainer = slideUpWithFadeIn(binding.registerContainer, 500L)
+
+        // Start Animation
+        AnimatorSet().apply {
+            playSequentially(title, tilEmail, tilPassword, btnLogin, registerContainer)
+            start()
+        }
     }
 
     private fun uiStateObserver(state: UiState<User>) {

@@ -1,5 +1,6 @@
 package com.andresuryana.dicodingstories.ui.fragment.story.add
 
+import android.animation.AnimatorSet
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.andresuryana.dicodingstories.R
 import com.andresuryana.dicodingstories.databinding.FragmentAddStoryBinding
 import com.andresuryana.dicodingstories.ui.base.ImagePickerFragment
+import com.andresuryana.dicodingstories.util.AnimationHelper
 import com.andresuryana.dicodingstories.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -45,6 +47,9 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Animation
+        animateLayout()
+
         // Add observer
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -72,6 +77,18 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
         binding.ivStoryImage.setImageBitmap(BitmapFactory.decodeFile(image.path))
         binding.ivStoryImage.visibility = View.VISIBLE
         binding.uploadHintContainer.visibility = View.GONE
+    }
+
+    private fun animateLayout() {
+        // Define animation
+        val imageUploadContainer = AnimationHelper.slideUpWithFadeIn(binding.imageUploadContainer, 1000L)
+        val tilDescription = AnimationHelper.slideUpWithFadeIn(binding.tilDescription, 500L)
+
+        // Start Animation
+        AnimatorSet().apply {
+            playSequentially(imageUploadContainer, tilDescription)
+            start()
+        }
     }
 
     private fun addStoryStateObserver(state: UiState<Boolean>) {

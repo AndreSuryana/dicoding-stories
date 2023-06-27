@@ -79,11 +79,13 @@
                 android:id="@+id/image_upload_container"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
+                android:alpha="0"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardCornerRadius="4dp"
                 app:strokeColor="@color/black"
-                app:strokeWidth="0.75dp">
+                app:strokeWidth="0.75dp"
+                tools:alpha="1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -139,7 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_normal"
-                app:hintEnabled="true">
+                android:alpha="0"
+                app:hintEnabled="true"
+                tools:alpha="1">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_add_description"
