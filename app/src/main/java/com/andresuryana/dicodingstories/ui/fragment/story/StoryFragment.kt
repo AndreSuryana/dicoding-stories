@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.andresuryana.dicodingstories.R
@@ -66,6 +67,13 @@ class StoryFragment : BaseFragment() {
                     // Collect stories again if refresh trigger is updated
                     viewModel.loadStories().collectLatest { storyAdapter.submitData(it) }
                 }
+            }
+        }
+
+        storyAdapter.addLoadStateListener { loadStates ->
+            // Check if item is empty on first load
+            if (loadStates.source.refresh is LoadState.NotLoading && storyAdapter.itemCount == 0) {
+                showErrorMessage(R.string.error_stories_empty)
             }
         }
 
