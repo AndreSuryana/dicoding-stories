@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_normal"
-    android:backgroundTint="@color/white"
+    app:cardBackgroundColor="?attr/colorSurfaceBright"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp"
     app:strokeWidth="0dp">
@@ -17,10 +17,10 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_name"
+            style="@style/Theme.DicodingStories.TextView.PersonNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textColor="@color/primary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
