@@ -1,7 +1,12 @@
 package com.andresuryana.dicodingstories.util
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
+import androidx.activity.result.ActivityResultLauncher
+import androidx.core.content.ContextCompat
 import com.andresuryana.dicodingstories.R
+import com.google.android.gms.maps.GoogleMap
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -40,5 +45,17 @@ object Ext {
     fun Date.formatDate(pattern: String): String {
         val sdf = SimpleDateFormat(pattern, Locale.getDefault())
         return sdf.format(this)
+    }
+
+    fun GoogleMap.enableMyLocation(activity: Activity, requestPermissionLauncher: ActivityResultLauncher<String>) {
+        if (ContextCompat.checkSelfPermission(
+                activity.applicationContext,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            this.isMyLocationEnabled = true
+        } else {
+            requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        }
     }
 }

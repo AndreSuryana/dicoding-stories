@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,7 @@ import com.andresuryana.dicodingstories.R
 import com.andresuryana.dicodingstories.data.model.Story
 import com.andresuryana.dicodingstories.databinding.FragmentStoryMapBinding
 import com.andresuryana.dicodingstories.ui.base.BaseFragment
+import com.andresuryana.dicodingstories.util.Ext.enableMyLocation
 import com.andresuryana.dicodingstories.util.Helper.formatStoryDescriptionForMaps
 import com.andresuryana.dicodingstories.util.UiState
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -34,6 +36,13 @@ class StoryMapFragment : BaseFragment(), OnMapReadyCallback {
     private val viewModel by viewModels<StoryMapViewModel>()
 
     private lateinit var gMap: GoogleMap
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,8 +85,10 @@ class StoryMapFragment : BaseFragment(), OnMapReadyCallback {
             isZoomControlsEnabled = true
             isCompassEnabled = true
             isMapToolbarEnabled = true
-            isMyLocationButtonEnabled = true
         }
+
+        // Enable my location
+        getMyLocation()
     }
 
     private fun uiStateObserver(state: UiState<List<Story>>) {
@@ -125,5 +136,9 @@ class StoryMapFragment : BaseFragment(), OnMapReadyCallback {
                 resources.getDimensionPixelSize(R.dimen.padding_maps)
             )
         )
+    }
+
+    private fun getMyLocation() {
+        gMap.enableMyLocation(requireActivity(), requestPermissionLauncher)
     }
 }
