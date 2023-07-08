@@ -56,9 +56,17 @@ dependencies {
         appCompatVerstion = "1.6.1"
         materialVersion = "1.9.0"
         constraintLayoutVersion = "2.1.4"
-        jUnitVersion = "4.13.2"
+
+        // Testing
         testJUnitVersion = "1.1.5"
         espressoVersion = "3.5.1"
+        jUnitVersion = "4.13.2"
+        archTestVersion = "2.2.0"
+        coroutinesTestVersion = "1.6.1"
+        mockitoVersion = "3.12.4"
+
+        // Navigation Component
+        navigationVersion = "2.6.0"
 
         // Network
         retrofitVersion = "2.9.0"
@@ -85,13 +93,19 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVerstion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    testImplementation "junit:junit:$jUnitVersion"
+
+    // Testing
     androidTestImplementation "androidx.test.ext:junit:$testJUnitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "androidx.arch.core:core-testing:$archTestVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
 
     // Navigation Component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -109,7 +123,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     // Room
     implementation "androidx.room:room-ktx:$roomVersion"
