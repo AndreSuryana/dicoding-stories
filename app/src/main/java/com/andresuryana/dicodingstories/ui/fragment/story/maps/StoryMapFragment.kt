@@ -14,6 +14,7 @@ import com.andresuryana.dicodingstories.data.model.Story
 import com.andresuryana.dicodingstories.databinding.FragmentStoryMapBinding
 import com.andresuryana.dicodingstories.ui.base.BaseFragment
 import com.andresuryana.dicodingstories.util.Ext.enableMyLocation
+import com.andresuryana.dicodingstories.util.Ext.setupMapStyle
 import com.andresuryana.dicodingstories.util.Helper.formatStoryDescriptionForMaps
 import com.andresuryana.dicodingstories.util.UiState
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -81,6 +82,7 @@ class StoryMapFragment : BaseFragment(), OnMapReadyCallback {
         gMap = map
 
         // Google maps setting
+        gMap.setupMapStyle(requireContext(), R.raw.map_style)
         gMap.uiSettings.apply {
             isZoomControlsEnabled = true
             isCompassEnabled = true

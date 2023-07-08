@@ -17,6 +17,7 @@ import com.andresuryana.dicodingstories.databinding.FragmentAddStoryBinding
 import com.andresuryana.dicodingstories.ui.base.ImagePickerFragment
 import com.andresuryana.dicodingstories.util.AnimationHelper
 import com.andresuryana.dicodingstories.util.Ext.enableMyLocation
+import com.andresuryana.dicodingstories.util.Ext.setupMapStyle
 import com.andresuryana.dicodingstories.util.UiState
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -112,6 +113,7 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
         gMap = map
 
         // Google maps setting
+        gMap.setupMapStyle(requireContext(), R.raw.map_style)
         gMap.uiSettings.apply {
             isZoomControlsEnabled = true
             isCompassEnabled = true

@@ -3,10 +3,13 @@ package com.andresuryana.dicodingstories.util
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
+import androidx.annotation.RawRes
 import androidx.core.content.ContextCompat
 import com.andresuryana.dicodingstories.R
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.MapStyleOptions
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -56,6 +59,14 @@ object Ext {
             this.isMyLocationEnabled = true
         } else {
             requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    fun GoogleMap.setupMapStyle(context: Context, @RawRes styleRes: Int) {
+        try {
+            setMapStyle(MapStyleOptions.loadRawResourceStyle(context, styleRes))
+        } catch (e: Exception) {
+            Log.e(this::class.java.simpleName, e.localizedMessage, e)
         }
     }
 }
