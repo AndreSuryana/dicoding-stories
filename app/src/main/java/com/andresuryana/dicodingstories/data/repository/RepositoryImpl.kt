@@ -1,12 +1,14 @@
 package com.andresuryana.dicodingstories.data.repository
 
 import android.util.Log
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.andresuryana.dicodingstories.data.model.Story
 import com.andresuryana.dicodingstories.data.model.User
-import com.andresuryana.dicodingstories.data.pagination.StoryPagingSource
+import com.andresuryana.dicodingstories.data.pagination.StoryRemoteMediator
+import com.andresuryana.dicodingstories.data.source.local.StoryDatabase
 import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
 import com.andresuryana.dicodingstories.util.Constants.STORIES_PAGE_SIZE
@@ -23,6 +25,7 @@ import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val remote: ApiService,
+    private val local: StoryDatabase,
     private val session: SessionHelper
 ) : Repository {
 
@@ -63,13 +66,16 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    @OptIn(ExperimentalPagingApi::class)
     override suspend fun getStories(): Flow<PagingData<Story>> {
         return try {
             Pager(
-                config = PagingConfig(pageSize = STORIES_PAGE_SIZE)
-            ) {
-                StoryPagingSource(remote)
-            }.flow
+                config = PagingConfig(pageSize = STORIES_PAGE_SIZE),
+                remoteMediator = StoryRemoteMediator(remote, local),
+                pagingSourceFactory = {
+                    local.storyDao().getStories()
+                }
+            ).flow
         } catch (e: Exception) {
             Log.e(this::class.java.simpleName, e.message, e)
             flowOf(PagingData.empty())

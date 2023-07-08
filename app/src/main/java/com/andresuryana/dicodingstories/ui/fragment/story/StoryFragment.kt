@@ -51,6 +51,9 @@ class StoryFragment : BaseFragment() {
 
         // Setup adapter
         storyAdapter = StoryAdapter()
+        storyAdapter.withLoadStateFooter(
+            LoadingStateAdapter { storyAdapter.retry() }
+        )
         storyAdapter.setOnItemClickListener { story ->
             val bundle = bundleOf(getString(R.string.key_story) to story)
             getNavController().navigate(R.id.action_storyFragment_to_detailStoryFragment, bundle)
@@ -65,7 +68,7 @@ class StoryFragment : BaseFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.refreshTrigger.collectLatest {
                     // Collect stories again if refresh trigger is updated
-                    viewModel.loadStories().collectLatest { storyAdapter.submitData(it) }
+                    viewModel.loadStories().collectLatest { storyAdapter.submitData(lifecycle, it) }
                 }
             }
         }

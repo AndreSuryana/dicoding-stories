@@ -39,6 +39,7 @@ android {
 
     kotlinOptions {
         jvmTarget = '17'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 
     buildFeatures {
@@ -68,6 +69,15 @@ dependencies {
 
         // Dagger Hilt
         hiltVersion = "2.44"
+
+        // Swipe Refresh layout
+        swipeRefreshVersion = "1.2.0-alpha01"
+
+        // Glide
+        glideVersion = "4.15.1"
+
+        // Room
+        roomVersion = "2.5.2"
     }
 
     // Default Generated Dependencies
@@ -96,13 +106,15 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
     // Swipe Refresh Layout
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 
-    // Preference
-    implementation 'androidx.preference:preference-ktx:1.2.0'
+    // Room
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-paging:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }
 
 kapt {

@@ -45,6 +45,7 @@
     <string name="btn_default_negative">Tidak</string>
     <string name="btn_default_positive">Iya</string>
     <string name="btn_cancel">Batal</string>
+    <string name="btn_retry">Coba Lagi</string>
 
     <!-- Questions -->
     <string name="question_register">Tidak memiliki akun?</string>

@@ -49,6 +49,7 @@
     <string name="btn_default_negative">No</string>
     <string name="btn_default_positive">Yes</string>
     <string name="btn_cancel">Cancel</string>
+    <string name="btn_retry">Retry</string>
 
     <!-- Questions -->
     <string name="question_register">Don\'t have an account?</string>

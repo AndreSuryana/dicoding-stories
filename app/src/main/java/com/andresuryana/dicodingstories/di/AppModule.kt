@@ -1,9 +1,12 @@
 package com.andresuryana.dicodingstories.di
 
 import android.content.Context
+import androidx.room.Room
 import com.andresuryana.dicodingstories.BuildConfig
 import com.andresuryana.dicodingstories.data.repository.Repository
 import com.andresuryana.dicodingstories.data.repository.RepositoryImpl
+import com.andresuryana.dicodingstories.data.source.local.StoryDatabase
+import com.andresuryana.dicodingstories.data.source.local.contract.DatabaseContract
 import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
 import com.andresuryana.dicodingstories.data.source.prefs.SessionHelperImpl
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
@@ -29,11 +32,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSessionHelper(@ApplicationContext context: Context): SessionHelper = SessionHelperImpl(context)
+    fun provideSessionHelper(@ApplicationContext context: Context): SessionHelper =
+        SessionHelperImpl(context)
 
     @Provides
     @Singleton
-    fun provideRepository(remote: ApiService, session: SessionHelper): Repository = RepositoryImpl(remote, session)
+    fun provideRepository(
+        remote: ApiService,
+        local: StoryDatabase,
+        session: SessionHelper
+    ): Repository = RepositoryImpl(remote, local, session)
 
     @Provides
     @Singleton
@@ -43,7 +51,8 @@ object AppModule {
         val headerInterceptor = HeaderInterceptor(context)
         val errorInterceptor = ErrorInterceptor()
         val loggingInterceptor = HttpLoggingInterceptor().apply {
-            this.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            this.level =
+                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
 
         // Client
@@ -67,5 +76,15 @@ object AppModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStoryDatabase(@ApplicationContext context: Context): StoryDatabase {
+        return Room.databaseBuilder(
+            context,
+            StoryDatabase::class.java,
+            DatabaseContract.DATABASE_NAME
+        ).fallbackToDestructiveMigration().build()
     }
 }
