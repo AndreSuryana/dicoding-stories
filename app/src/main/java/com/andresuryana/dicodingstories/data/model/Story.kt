@@ -32,9 +32,9 @@ data class Story(
     var createdAt: Date,
 
     @SerializedName("lat")
-    val latitude: Float?,
+    val latitude: Double?,
 
     @SerializedName("lon")
-    val longitude: Float?
+    val longitude: Double?
 
 ) : Parcelable

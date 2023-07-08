@@ -11,6 +11,7 @@ import com.andresuryana.dicodingstories.data.pagination.StoryRemoteMediator
 import com.andresuryana.dicodingstories.data.source.local.StoryDatabase
 import com.andresuryana.dicodingstories.data.source.prefs.SessionHelper
 import com.andresuryana.dicodingstories.data.source.remote.ApiService
+import com.andresuryana.dicodingstories.util.Constants.NEARBY_STORIES_PAGE_SIZE
 import com.andresuryana.dicodingstories.util.Constants.STORIES_PAGE_SIZE
 import com.andresuryana.dicodingstories.util.Helper.parseErrorMessage
 import com.andresuryana.dicodingstories.util.Resource
@@ -79,6 +80,24 @@ class RepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Log.e(this::class.java.simpleName, e.message, e)
             flowOf(PagingData.empty())
+        }
+    }
+
+    override suspend fun getStoriesWithLocation(): Resource<List<Story>> {
+        return try {
+            val response = remote.getStories(
+                size = NEARBY_STORIES_PAGE_SIZE,
+                location = 1
+            )
+            val result = response.body()
+            if (response.isSuccessful && result != null) {
+                Resource.Success(result.data)
+            } else {
+                Resource.Failed(parseErrorMessage(response.errorBody()))
+            }
+        } catch (e: Exception) {
+            Log.e(this::class.java.simpleName, e.message, e)
+            Resource.Error(e.message)
         }
     }
 

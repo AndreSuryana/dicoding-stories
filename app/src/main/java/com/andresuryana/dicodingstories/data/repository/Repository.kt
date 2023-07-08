@@ -15,5 +15,7 @@ interface Repository {
 
     suspend fun getStories(): Flow<PagingData<Story>>
 
+    suspend fun getStoriesWithLocation(): Resource<List<Story>>
+
     suspend fun addNewStory(photo: File, description: String): Resource<Boolean>
 }

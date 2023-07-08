@@ -119,5 +119,10 @@ class StoryFragment : BaseFragment() {
                 }
             )
         }
+
+        // Button maps
+        binding.actionMaps.setOnClickListener {
+            getNavController().navigate(R.id.action_storyFragment_to_storyMapFragment)
+        }
     }
 }

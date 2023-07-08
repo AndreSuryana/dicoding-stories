@@ -44,6 +44,18 @@
                 app:tint="@color/white"
                 tools:ignore="RedundantDescriptionCheck" />
 
+            <ImageButton
+                android:id="@+id/action_maps"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/desc_btn_story_maps"
+                android:src="@drawable/ic_near_me"
+                app:tint="@color/white"
+                tools:ignore="RedundantDescriptionCheck" />
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

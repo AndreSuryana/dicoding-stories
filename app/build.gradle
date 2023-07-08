@@ -86,6 +86,9 @@ dependencies {
 
         // Room
         roomVersion = "2.5.2"
+
+        // Google Maps
+        mapsVersion = "18.1.0"
     }
 
     // Default Generated Dependencies
@@ -129,6 +132,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-paging:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Google maps
+    implementation "com.google.android.gms:play-services-maps:$mapsVersion"
 }
 
 kapt {
