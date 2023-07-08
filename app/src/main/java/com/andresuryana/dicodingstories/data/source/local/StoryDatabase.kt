@@ -10,7 +10,7 @@ import com.andresuryana.dicodingstories.data.source.local.dao.StoryDao
 import com.andresuryana.dicodingstories.data.source.local.entity.RemoteKeys
 
 @TypeConverters(DateTypeConverter::class)
-@Database(entities = [Story::class, RemoteKeys::class], version = 2, exportSchema = false)
+@Database(entities = [Story::class, RemoteKeys::class], version = 1, exportSchema = false)
 abstract class StoryDatabase : RoomDatabase() {
 
     abstract fun storyDao(): StoryDao
