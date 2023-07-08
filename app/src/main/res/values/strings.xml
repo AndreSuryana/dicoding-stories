@@ -16,6 +16,7 @@
     <string name="title_storage">Storage</string>
     <string name="title_intent_chooser_image">Choose Image</string>
     <string name="title_story_detail">Story Detail</string>
+    <string name="title_location">Location</string>
 
     <!-- Hint -->
     <string name="hint_user_name">Name</string>
@@ -36,6 +37,7 @@
     <string name="error_permission_denied">%s permission has been denied, please enable in the Settings</string>
     <string name="error_story_image">Upload your image first!</string>
     <string name="error_story_description">Description must not be empty</string>
+    <string name="error_story_location">Please select location on the map</string>
     <string name="error_stories_empty">The story list is currently empty</string>
 
     <string name="dialog_title_logout">Logout Confirmation</string>
@@ -73,5 +75,6 @@
     <string name="text_relative_date_months">months ago</string>
     <string name="text_relative_date_years">years ago</string>
     <string name="text_posted_by_user_location">Posted by %s</string>
+    <string name="text_add_location">Add location</string>
 
 </resources>

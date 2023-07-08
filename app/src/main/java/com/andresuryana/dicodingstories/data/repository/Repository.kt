@@ -17,5 +17,10 @@ interface Repository {
 
     suspend fun getStoriesWithLocation(): Resource<List<Story>>
 
-    suspend fun addNewStory(photo: File, description: String): Resource<Boolean>
+    suspend fun addNewStory(
+        photo: File,
+        description: String,
+        latitude: Double? = null,
+        longitude: Double? = null
+    ): Resource<Boolean>
 }

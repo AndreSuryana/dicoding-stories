@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +16,13 @@ import com.andresuryana.dicodingstories.R
 import com.andresuryana.dicodingstories.databinding.FragmentAddStoryBinding
 import com.andresuryana.dicodingstories.ui.base.ImagePickerFragment
 import com.andresuryana.dicodingstories.util.AnimationHelper
+import com.andresuryana.dicodingstories.util.Ext.enableMyLocation
 import com.andresuryana.dicodingstories.util.UiState
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -22,7 +30,8 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 @AndroidEntryPoint
-class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResultCallback {
+class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResultCallback,
+    OnMapReadyCallback {
 
     private var _binding: FragmentAddStoryBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +39,16 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
     private val viewModel by viewModels<AddStoryViewModel>()
 
     private var storyImage: File? = null
+
+    private lateinit var gMap: GoogleMap
+    private var marker: MarkerOptions? = null
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +69,11 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
         // Animation
         animateLayout()
 
+        // Get map fragment
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
         // Add observer
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -60,6 +84,11 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
 
         // Setup image upload container
         setupImageUploadContainer()
+
+        // Setup enable maps switch
+        binding.switchMaps.setOnCheckedChangeListener { _, isChecked ->
+            binding.mapsContainer.isVisible = isChecked
+        }
 
         // Setup button
         setupButton()
@@ -79,14 +108,47 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
         binding.uploadHintContainer.visibility = View.GONE
     }
 
+    override fun onMapReady(map: GoogleMap) {
+        gMap = map
+
+        // Google maps setting
+        gMap.uiSettings.apply {
+            isZoomControlsEnabled = true
+            isCompassEnabled = true
+            isMapToolbarEnabled = true
+        }
+
+        // Setup map click listener
+        gMap.setOnMapClickListener { position ->
+            gMap.clear()
+            if (marker == null) marker = MarkerOptions()
+            marker?.let {
+                it.title(getString(R.string.title_location))
+                    .snippet("${position.latitude}, ${position.longitude}")
+                    .position(position)
+                    .draggable(true)
+                gMap.addMarker(it)
+            }
+        }
+
+        // Enable my location
+        getMyLocation()
+    }
+
+    private fun getMyLocation() {
+        gMap.enableMyLocation(requireActivity(), requestPermissionLauncher)
+    }
+
     private fun animateLayout() {
         // Define animation
-        val imageUploadContainer = AnimationHelper.slideUpWithFadeIn(binding.imageUploadContainer, 1000L)
+        val imageUploadContainer =
+            AnimationHelper.slideUpWithFadeIn(binding.imageUploadContainer, 1000L)
         val tilDescription = AnimationHelper.slideUpWithFadeIn(binding.tilDescription, 500L)
+        val switchLocation = AnimationHelper.slideUpWithFadeIn(binding.switchMaps, 500L)
 
         // Start Animation
         AnimatorSet().apply {
-            playSequentially(imageUploadContainer, tilDescription)
+            playSequentially(imageUploadContainer, tilDescription, switchLocation)
             start()
         }
     }
@@ -129,13 +191,13 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
 
         // Button add
         binding.buttonAdd.setOnClickListener {
-            validate { image, description ->
-                viewModel.addStory(image, description)
+            validate { image, description, latLng ->
+                viewModel.addStory(image, description, latLng?.latitude, latLng?.longitude)
             }
         }
     }
 
-    private fun validate(result: (image: File, description: String) -> Unit) {
+    private fun validate(result: (image: File, description: String, latLng: LatLng?) -> Unit) {
         // Get value
         val description = binding.edAddDescription.text?.trim().toString()
 
@@ -151,8 +213,14 @@ class AddStoryFragment : ImagePickerFragment(), ImagePickerFragment.OnImageResul
             return
         }
 
+        if (binding.switchMaps.isChecked && binding.mapsContainer.isVisible && marker == null) {
+            showErrorMessage(getString(R.string.error_story_location))
+            binding.mapsContainer.requestFocus()
+            return
+        }
+
         storyImage?.let { image ->
-            result(image, description)
+            result(image, description, marker?.position)
         }
     }
 }

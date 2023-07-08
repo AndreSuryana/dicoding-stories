@@ -12,6 +12,7 @@
     <string name="title_storage">Penyimpanan</string>
     <string name="title_intent_chooser_image">Pilih Gambar</string>
     <string name="title_story_detail">Detail Cerita</string>
+    <string name="title_location">Lokasi</string>
 
     <!-- Hint -->
     <string name="hint_user_name">Nama</string>
@@ -32,6 +33,7 @@
     <string name="error_permission_denied">Izin %s telah ditolak, harap aktifkan di Pengaturan</string>
     <string name="error_story_image">Unggah gambar Anda terlebih dahulu!</string>
     <string name="error_story_description">Deskripsi tidak boleh kosong</string>
+    <string name="error_story_location">Silakan pilih lokasi di peta</string>
     <string name="error_stories_empty">Daftar cerita saat ini masih kosong</string>
 
     <string name="dialog_title_logout">Konfirmasi Keluar</string>
@@ -69,5 +71,6 @@
     <string name="text_relative_date_months">bulan yang lalu</string>
     <string name="text_relative_date_years">tahun yang lalu</string>
     <string name="text_posted_by_user_location">Dibuat oleh %s</string>
+    <string name="text_add_location">Tambah lokasi</string>
 
 </resources>

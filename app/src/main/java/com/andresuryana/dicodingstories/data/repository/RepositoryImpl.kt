@@ -101,7 +101,12 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addNewStory(photo: File, description: String): Resource<Boolean> {
+    override suspend fun addNewStory(
+        photo: File,
+        description: String,
+        latitude: Double?,
+        longitude: Double?
+    ): Resource<Boolean> {
         return try {
             val photoRequestBody = photo.asRequestBody("image/jpeg".toMediaType())
             val photoMultipart = MultipartBody.Part.createFormData(
@@ -110,7 +115,9 @@ class RepositoryImpl @Inject constructor(
                 body = photoRequestBody
             )
             val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
-            val response = remote.addNewStory(photoMultipart, descriptionRequestBody)
+            val latitudeRequestBody = latitude?.toString()?.toRequestBody("text/plain".toMediaType())
+            val longitudeRequestBody = longitude?.toString()?.toRequestBody("text/plain".toMediaType())
+            val response = remote.addNewStory(photoMultipart, descriptionRequestBody, latitudeRequestBody, longitudeRequestBody)
             val result = response.body()
             if (response.isSuccessful && result != null) {
                 Resource.Success(true)

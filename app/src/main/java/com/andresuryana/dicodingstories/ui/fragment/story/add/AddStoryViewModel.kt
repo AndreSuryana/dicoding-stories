@@ -21,10 +21,15 @@ class AddStoryViewModel @Inject constructor(
     private val _addStoryState = MutableSharedFlow<UiState<Boolean>>()
     val addStoryState = _addStoryState.asSharedFlow()
 
-    fun addStory(photo: File, description: String) {
+    fun addStory(
+        photo: File,
+        description: String,
+        latitude: Double? = null,
+        longitude: Double? = null
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             _addStoryState.emit(UiState.Loading)
-            when (val result = repository.addNewStory(photo, description)) {
+            when (val result = repository.addNewStory(photo, description, latitude, longitude)) {
                 is Resource.Success -> {
                     _addStoryState.emit(UiState.Success(result.data))
                 }
