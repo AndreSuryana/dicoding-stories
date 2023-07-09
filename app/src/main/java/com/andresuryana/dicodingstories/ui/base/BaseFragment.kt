@@ -1,7 +1,5 @@
 package com.andresuryana.dicodingstories.ui.base
 
-import android.os.Bundle
-import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -16,18 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 open class BaseFragment : Fragment() {
 
-    private lateinit var navController: NavController
+    private var navController: NavController? = null
     private var loadingDialog: LoadingDialogFragment? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // Init nav controller
-        navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView)
-    }
-
     fun getNavController(): NavController {
-        return navController
+        return navController ?: run {
+            navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView)
+            navController!!
+        }
     }
 
     fun showLoading() {
